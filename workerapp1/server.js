@@ -1,21 +1,44 @@
-const express = ('express');
+const express = require('express');
+var path = require('path');
 const { Worker, isMainThread, parentPort } = require('worker_threads');
+
 const app = express();
 
-
+const worker = new Worker('./worker.js');
 if (isMainThread) {
-  // This code is executed in the main thread and not in the worker.
+    // This code is executed in the main thread and not in the worker.
   
-  // Create the worker.
-  const worker = new Worker('./worker.js');
-  // Listen for messages from the worker and print them.
-  worker.on('message', (msg) => { console.log(msg); });
-} else {
-  // This code is executed in the worker and not in the main thread.
+    // Create the worker.
+    
   
-  // Send a message to the main thread.
-  parentPort.postMessage('Hello world!');
-}
+    // Listen for messages from the worker and print them.
+    worker.on('message', (message) => {
+       console.log(message); 
+    });
+    worker.on('error', (data) => {
+        console.log('Got an Error');
+    });
+    worker.on('exit', (data) => {
+        console.log('Exit');
+    });
+
+} 
+
+let number = 1;
+
+app.get('/', (req,res)=>{
+    const obj = {
+        "name": "Daniel"
+    };
+
+    
+
+    if(number > 0){
+        worker.postMessage(obj);
+    }
+    number--;
+    res.sendFile(path.join(__dirname +'/index.html'));
+});
 
 
 
