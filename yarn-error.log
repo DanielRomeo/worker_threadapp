@@ -1,0 +1,42 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js run dev
+
+PATH: 
+  /home/daniel/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  10.19.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/daniel/Documents/projects/threadapp/package.json: Unexpected token } in JSON at position 352
+      at JSON.parse (<anonymous>)
+      at /usr/share/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/share/yarn/lib/cli.js:310:30)
+      at /usr/share/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "threadapp",
+    "version": "1.0.0",
+    "description": "A node app that demonstarates use of worker threads(cheat sheet if you will)",
+    "main": "server.js",
+    "author": "Daniel Romeo Mamphekgo",
+    "license": "MIT",
+    "scripts": {
+      "start": "node --experimental-worker server.js",
+      "dev": "nodemon --experimental-worker server.js" 
+    },
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

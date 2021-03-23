@@ -1,0 +1,15 @@
+{
+  "name": "threadapp",
+  "version": "1.0.0",
+  "description": "A node app that demonstarates use of worker threads(cheat sheet if you will)",
+  "main": "server.js",
+  "author": "Daniel Romeo Mamphekgo",
+  "license": "MIT",
+  "scripts": {
+    "start": "node --experimental-worker server.js",
+    "dev": "nodemon --experimental-worker server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
